@@ -14,4 +14,4 @@ python pywpws.wsgi
 
 ## License of PyWPS
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://en.wikipedia.org/wiki/MIT_License)
