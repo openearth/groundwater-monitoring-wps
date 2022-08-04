@@ -1,0 +1,4 @@
+
+flask==2.2.0
+pywps==4.5.2
+geoalchemy2==0.6.3
