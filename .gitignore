@@ -1,5 +1,4 @@
 *.pyc
-workdir/*
 outputs/*
 logs/*
 tmp/*
