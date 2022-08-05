@@ -1,0 +1,7 @@
+2022-08-04 10:28:06,456] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-08-04 10:29:31,638] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-04 10:29:31,784] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\documents\groundwater-monitoring-wps\tmp\pywps_process_5wv_30um
+2022-08-04 10:29:45,506] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-04 10:29:45,725] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\documents\groundwater-monitoring-wps\tmp\pywps_process_ef2axxny
+2022-08-04 11:12:31,111] [INFO] file=C:\Users\micha\.conda\envs\gw_test_1\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-08-04 11:12:47,410] [INFO] file=C:\Users\micha\.conda\envs\gw_test_1\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
