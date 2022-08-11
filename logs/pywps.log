@@ -5,3 +5,88 @@
 2022-08-04 10:29:45,725] [INFO] file=C:\Users\micha\.conda\envs\gw_pywps\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\documents\groundwater-monitoring-wps\tmp\pywps_process_ef2axxny
 2022-08-04 11:12:31,111] [INFO] file=C:\Users\micha\.conda\envs\gw_test_1\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
 2022-08-04 11:12:47,410] [INFO] file=C:\Users\micha\.conda\envs\gw_test_1\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-08-05 10:33:15,007] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: getcapabilities
+2022-08-05 10:33:28,685] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: getcapabilities
+2022-08-05 10:34:37,755] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-05 10:34:37,757] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process 'Ultimatequestion', locator: Identifier
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 88, in prepare_process_for_execution
+    process = self.processes[identifier]
+KeyError: 'Ultimatequestion'
+2022-08-05 10:35:06,428] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-05 10:35:06,439] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 500, description: No applicable error code, please check error log., locator: 
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 314, in call
+    raise e
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 304, in call
+    response = self.execute(
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 81, in execute
+    process = self.prepare_process_for_execution(identifier)
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 97, in prepare_process_for_execution
+    tempdir = tempfile.mkdtemp(prefix='pywps_process_', dir=workdir)
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\tempfile.py", line 358, in mkdtemp
+    _os.mkdir(file, 0o700)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'D:\\projecten\\datamanagement\\rws\\GrondwaterMonitoringIJmuiden\\groundwater_monitoring_wps\\groundwater-monitoring-wps\\tmp\\pywps_process_7c6btc_j'
+2022-08-05 10:35:15,356] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown request executeprocess, locator: ExecuteProcess
+NoneType: None
+2022-08-05 10:35:29,058] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-05 10:35:29,066] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 500, description: No applicable error code, please check error log., locator: 
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 314, in call
+    raise e
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 304, in call
+    response = self.execute(
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 81, in execute
+    process = self.prepare_process_for_execution(identifier)
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 97, in prepare_process_for_execution
+    tempdir = tempfile.mkdtemp(prefix='pywps_process_', dir=workdir)
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\tempfile.py", line 358, in mkdtemp
+    _os.mkdir(file, 0o700)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'D:\\projecten\\datamanagement\\rws\\GrondwaterMonitoringIJmuiden\\groundwater_monitoring_wps\\groundwater-monitoring-wps\\tmp\\pywps_process_l7on_rad'
+2022-08-05 10:36:16,966] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-05 10:36:17,063] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_02i5q7ib
+2022-08-05 10:37:24,776] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-05 10:37:24,930] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_g32hei0_
+2022-08-10 14:16:07,896] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: getcapabilities
+2022-08-10 14:19:14,304] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: getcapabilities
+2022-08-10 14:57:23,571] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown request describecapabilities, locator: DescribeCapabilities
+NoneType: None
+2022-08-10 14:57:35,357] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-08-10 14:58:06,091] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 14:58:06,171] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=35, msg='answer'
+2022-08-10 14:58:06,174] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_g8abf3h6
+2022-08-10 14:59:36,113] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 14:59:36,239] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_7padf1xp
+2022-08-10 15:00:02,004] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:00:03,742] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=No module named 'psycopg2'
+2022-08-10 15:00:03,750] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_z3qoy77z
+2022-08-10 15:00:42,002] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:00:42,159] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=No module named 'psycopg2'
+2022-08-10 15:00:42,163] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_78rsat4b
+2022-08-10 15:03:36,529] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:03:37,084] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=(psycopg2.OperationalError) could not translate host name "13227@localhost" to address: Unknown server error
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-10 15:03:37,090] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_40ls391j
+2022-08-10 15:04:21,552] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:04:33,237] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=(psycopg2.OperationalError) could not translate host name "13227" to address: Unknown host
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-10 15:04:33,241] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_jrm99d4v
+2022-08-10 15:07:17,384] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:07:17,635] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=(psycopg2.OperationalError) could not translate host name "13227'@localhost" to address: Unknown server error
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-10 15:07:17,640] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_70bcqtft
+2022-08-10 15:08:03,034] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:08:03,460] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=(psycopg2.OperationalError) could not translate host name "13227@localhost" to address: Unknown server error
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-10 15:08:03,469] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_c6e_59dm
+2022-08-10 15:12:45,947] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:12:46,217] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=279 module=Process function=_run_process Process error: method=read_gwslocations.py._handler, line=37, msg=(psycopg2.OperationalError) could not translate host name "13227@localhost" to address: Unknown server error
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-08-10 15:12:46,220] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_y3ihl_r3
+2022-08-10 15:13:40,569] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-10 15:13:41,060] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_na2gh4em

@@ -2,6 +2,8 @@ from pywps.app import Process
 from pywps.inout.outputs import LiteralOutput
 from pywps.app.Common import Metadata
 
+# http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
+
 
 class UltimateQuestion(Process):
     def __init__(self):

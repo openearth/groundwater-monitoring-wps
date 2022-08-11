@@ -42,6 +42,7 @@ import logging
 
 # Ultimate question
 from processes.ultimate_question import UltimateQuestion
+from processes.read_gwslocations import ReadGWSlocations
 
 # Groundwater modeling processes
 
@@ -49,6 +50,7 @@ from processes.ultimate_question import UltimateQuestion
 # TODO add the proces in the processes list
 processes = [
     UltimateQuestion(),
+    ReadGWSlocations(),
 ]
 
 # Description used in template
