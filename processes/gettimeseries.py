@@ -56,7 +56,8 @@ def createconnectiontodb():
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
     return engine
 
-def getlocationsfromtable():
+def gettsfromtable(loc_id):
+    # haal voor deze loc_id de tijdreeksdata op.
     # first create connection
     engine = createconnectiontodb()
     stmt = """SELECT row_to_json(f) As feature 

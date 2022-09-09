@@ -1,9 +1,10 @@
+
 # -*- coding: utf-8 -*-
 # Copyright notice
 #   --------------------------------------------------------------------
 #   Copyright (C) 2022 Deltares
 #       Gerrit Hendriksen
-#       gerrit.hendriksen@deltares.nl
+#       Gerrit Hendriksen@deltares.nl
 #
 #   This library is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,46 +26,44 @@
 # Sign up to recieve regular updates of this function, and to contribute
 # your own tools.
 
-from pywps import Format
-from pywps.app import Process
-from pywps.inout.outputs import ComplexOutput
-from pywps.app.Common import Metadata
-from .read_gwslocations_proces import getlocationsfromtable
+# system pacakages
+import os
+from sqlalchemy import create_engine
+import configparser
 
-# http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
-# http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=read_gwslocations
-# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=read_gwslocations
+# Read default configuration from file
+def read_config():
+	# Default config file (relative path, does not work on production, weird)
+    if os.name == 'nt':
+        devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        confpath = os.path.join(devpath,'configuration_local.txt')
+    else:
+        confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'configuration.txt')
+    if not os.path.exists(confpath):	
+        confpath = '/opt/pywps/processes/configuration.txt'
+	# Parse and load
+    cf = configparser.ConfigParser() 
+    print(confpath)
+    cf.read(confpath)
+    return cf
 
-class ReadGWSlocations(Process):
-    def __init__(self):
-        inputs = []
-        outputs = [
-            ComplexOutput("jsonstations", "Retreive Groundwater monitoring locations",
-		                  supported_formats=[Format('application/json')])
-        ]
+def createconnectiontodb():
+    cf = read_config()
+    user = cf.get('PostGIS','user')
+    pwd  = cf.get('PostGIS','pass')
+    host = cf.get('PostGIS','host')
+    db   = cf.get('PostGIS','db')
+    engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
+    return engine
 
-        super(ReadGWSlocations, self).__init__(
-            self._handler,
-            identifier="read_gwslocations",
-            version="1.3.3.7",
-            title="Request for Groundwater monitoring locations",
-            abstract='The process returns a geojson with locations\
-             where timeseries information is avialable for each location.', 
-            profile="",
-            metadata=[
-                Metadata("Groundwater Monitoring Locations"),
-                Metadata("Returns GeoJSON with location information"),
-            ],
-            inputs=inputs,
-            outputs=outputs,
-            store_supported=False,
-            status_supported=False,
-        )
-
-    def _handler(self, request, response):
-        try:
-            response.outputs["jsonstations"].data = getlocationsfromtable()
-        except Exception as e:
-            res = { 'errMsg' : 'ERROR: {}'.format(e)}
-            response.outputs['output_json'].data = json.dumps(res)	
-        return response
+def getlocationsfromtable():
+    # first create connection
+    engine = createconnectiontodb()
+    stmt = """SELECT row_to_json(f) As feature 
+              FROM (SELECT 'Feature' As type 
+              , ST_AsGeoJSON(st_transform(geom,4326))::json As geometry 
+              , row_to_json((SELECT l FROM (SELECT name AS loc_id) As l)) As properties 
+              FROM timeseries.location As l) As f"""
+    r = engine.execute(stmt).fetchall()
+    print('result has',str(len(r)),'elements')
+    return r

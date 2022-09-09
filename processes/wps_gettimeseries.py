@@ -25,16 +25,17 @@
 # Sign up to recieve regular updates of this function, and to contribute
 # your own tools.
 
+import json
 from pywps import Format
 from pywps.app import Process
 from pywps.inout.outputs import ComplexOutput
 from pywps.inout.inputs import ComplexInput, LiteralInput
 from pywps.app.Common import Metadata
-from .read_gwslocations_proces import getlocationsfromtable
+from .gettimeseries import gettsfromtable
 
 # http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
-# http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=get_timeseries
-# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=get_timeseries&inputs=locationinfo={"locid":"A_2"}
+# http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=wps_gettimeseries
+# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2"}
 
 class GetTimeseries(Process):
     def __init__(self):
@@ -42,21 +43,21 @@ class GetTimeseries(Process):
                                supported_formats=[Format('application/json')])
                   ]
         outputs = [
-            ComplexOutput("jsonstations", "Retreive Groundwater monitoring locations",
+            ComplexOutput("jsonstimeseries", "Retreive Groundwater timeseries for specified location for all paramaters",
 		                  supported_formats=[Format('application/json')])
         ]
 
         super(GetTimeseries, self).__init__(
             self._handler,
-            identifier="get_timeseries",
+            identifier="wps_gettimeseries",
             version="1.3.3.7",
-            title="Request for Groundwater monitoring locations",
-            abstract='The process returns a geojson with locations\
-             where timeseries information is avialable for each location.', 
+            title="Request for Groundwater timeseries for specified location",
+            abstract='The process returns a geojson with timeseries data\
+             for all parameters present for the specified location.', 
             profile="",
             metadata=[
-                Metadata("Groundwater Monitoring Locations"),
-                Metadata("Returns GeoJSON with location information"),
+                Metadata("Groundwater Monitoring Timeseries"),
+                Metadata("Returns GeoJSON with timeseries information"),
             ],
             inputs=inputs,
             outputs=outputs,
@@ -67,9 +68,10 @@ class GetTimeseries(Process):
     def _handler(self, request, response):
         try:
             locid = request.inputs["locationinfo"][0].data
-            res = getlocationsfromtable(locid)
+            thid = json.loads(locid)['locid']
+            res = gettsfromtable(thid)
             # dit is de plek om een python script te gaan gebruiken die de tijdreeks voor je gaat ophalen.
-            response.outputs["jsonstations"].data = {'geselectedeerde locatie is',locid}
+            response.outputs["jsonstations"].data = {'geselectedeerde locatie is',thid}
         except Exception as e:
             res = { 'errMsg' : 'ERROR: {}'.format(e)}
             response.outputs['output_json'].data = json.dumps(res)	
