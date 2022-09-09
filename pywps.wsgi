@@ -42,8 +42,8 @@ import logging
 
 # Ultimate question
 from processes.ultimate_question import UltimateQuestion
-from processes.read_gwslocations import ReadGWSlocations
-from processes.gettimeseries_process import GetTimeseries
+from processes.wps_read_gwslocations import ReadGWSlocations
+from processes.wps_gettimeseries import GetTimeseries
 
 # Groundwater modeling processes
 
