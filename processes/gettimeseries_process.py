@@ -33,8 +33,8 @@ from pywps.app.Common import Metadata
 from .read_gwslocations_proces import getlocationsfromtable
 
 # http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
-# http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=read_gwslocations
-# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=read_gwslocations
+# http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=get_timeseries
+# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=get_timeseries&inputs=locationinfo={"locid":"A_2"}
 
 class GetTimeseries(Process):
     def __init__(self):
@@ -69,7 +69,7 @@ class GetTimeseries(Process):
             locid = request.inputs["locationinfo"][0].data
             res = getlocationsfromtable(locid)
             # dit is de plek om een python script te gaan gebruiken die de tijdreeks voor je gaat ophalen.
-            response.outputs["jsonstations"].data = {'geselectedeerde locatie is',locid
+            response.outputs["jsonstations"].data = {'geselectedeerde locatie is',locid}
         except Exception as e:
             res = { 'errMsg' : 'ERROR: {}'.format(e)}
             response.outputs['output_json'].data = json.dumps(res)	
