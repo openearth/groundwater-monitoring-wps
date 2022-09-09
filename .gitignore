@@ -21,3 +21,4 @@ pywps_demo.egg-info/
 _build/
 
 
+logs/pywps.log

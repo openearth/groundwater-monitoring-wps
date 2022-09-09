@@ -106,3 +106,55 @@ NoneType: None
 2022-08-16 14:29:52,662] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\validator\complexvalidator.py line=195 module=complexvalidator function=validatejson validating JSON; Mode: 0
 2022-08-16 14:29:52,712] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\validator\complexvalidator.py line=195 module=complexvalidator function=validatejson validating JSON; Mode: 0
 2022-08-16 14:29:52,717] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_teqcoz1e
+2022-08-16 14:31:04,364] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-08-16 14:31:04,390] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\validator\complexvalidator.py line=195 module=complexvalidator function=validatejson validating JSON; Mode: 0
+2022-08-16 14:31:04,460] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\validator\complexvalidator.py line=195 module=complexvalidator function=validatejson validating JSON; Mode: 0
+2022-08-16 14:31:04,465] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_e_o_t823
+2022-09-09 11:21:08,498] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: getcapabilities
+2022-09-09 11:21:32,391] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:21:33,293] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\validator\complexvalidator.py line=195 module=complexvalidator function=validatejson validating JSON; Mode: 0
+2022-09-09 11:21:33,300] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Process.py line=327 module=Process function=clean Removing temporary working directory: D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\tmp\pywps_process_fm7bc4cr
+2022-09-09 11:25:44,564] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:25:44,566] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process 'gettimeseries_process', locator: Identifier
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 88, in prepare_process_for_execution
+    process = self.processes[identifier]
+KeyError: 'gettimeseries_process'
+2022-09-09 11:26:08,403] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:26:08,405] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process 'gettimeseries_process', locator: Identifier
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 88, in prepare_process_for_execution
+    process = self.processes[identifier]
+KeyError: 'gettimeseries_process'
+2022-09-09 11:26:19,106] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:26:19,107] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process 'gettimeseries', locator: Identifier
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 88, in prepare_process_for_execution
+    process = self.processes[identifier]
+KeyError: 'gettimeseries'
+2022-09-09 11:26:26,991] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:26:26,993] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process 'gettimeseries', locator: Identifier
+Traceback (most recent call last):
+  File "C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py", line 88, in prepare_process_for_execution
+    process = self.processes[identifier]
+KeyError: 'gettimeseries'
+2022-09-09 11:27:28,337] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-09-09 11:27:28,342] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: Unknown process gettimeseries, locator: identifier
+NoneType: None
+2022-09-09 11:27:51,839] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: describeprocess
+2022-09-09 11:28:18,290] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:28:18,297] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=137 module=Service function=_parse_and_execute Missing parameter value: locationinfo
+2022-09-09 11:28:18,298] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: locationinfo, locator: locationinfo
+NoneType: None
+2022-09-09 11:28:40,948] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:28:40,950] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=137 module=Service function=_parse_and_execute Missing parameter value: locationinfo
+2022-09-09 11:28:40,951] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: locationinfo, locator: locationinfo
+NoneType: None
+2022-09-09 11:30:13,845] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:30:13,847] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=137 module=Service function=_parse_and_execute Missing parameter value: locationinfo
+2022-09-09 11:30:13,847] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: locationinfo, locator: locationinfo
+NoneType: None
+2022-09-09 11:30:40,338] [INFO] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=288 module=Service function=call Request: execute
+2022-09-09 11:30:40,340] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\app\Service.py line=137 module=Service function=_parse_and_execute Missing parameter value: locationinfo
+2022-09-09 11:30:40,340] [ERROR] file=C:\Users\hendrik_gt\Anaconda3\envs\grondwater\lib\site-packages\pywps\exceptions.py line=48 module=exceptions function=__init__ Exception: code: 400, description: locationinfo, locator: locationinfo
+NoneType: None
