@@ -71,8 +71,8 @@ class GetTimeseries(Process):
             thid = json.loads(locid)['locid']
             res = gettsfromtable(thid)
             # dit is de plek om een python script te gaan gebruiken die de tijdreeks voor je gaat ophalen.
-            response.outputs["jsonstations"].data = {'geselectedeerde locatie is',thid}
+            response.outputs["jsonstimeseries"].data = res
         except Exception as e:
             res = { 'errMsg' : 'ERROR: {}'.format(e)}
-            response.outputs['output_json'].data = json.dumps(res)	
+            response.outputs['jsonstimeseries'].data = json.dumps(res)	
         return response
