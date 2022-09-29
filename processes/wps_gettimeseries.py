@@ -36,6 +36,9 @@ from .gettimeseries import gettsfromtable
 # http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
 # http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=wps_gettimeseries
 # http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2"}
+# https://grondwater-ijmuiden.avi.directory.intra/wps?service=wps&request=GetCapabilities&version=2.0.0
+# https://grondwater-ijmuiden.avi.directory.intra/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2"}
+#
 
 class GetTimeseries(Process):
     def __init__(self):
