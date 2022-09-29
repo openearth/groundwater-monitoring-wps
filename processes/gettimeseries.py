@@ -27,6 +27,7 @@
 # your own tools.
 
 # system pacakages
+import json
 import os
 from sqlalchemy import create_engine
 import configparser
@@ -35,7 +36,8 @@ import configparser
 def read_config():
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
-        devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        #devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'configuration_local.txt')
     else:
         confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'configuration.txt')
@@ -59,12 +61,27 @@ def createconnectiontodb():
 def gettsfromtable(loc_id):
     # haal voor deze loc_id de tijdreeksdata op.
     # first create connection
+    print(loc_id)
     engine = createconnectiontodb()
-    stmt = """SELECT row_to_json(f) As feature 
-              FROM (SELECT 'Feature' As type 
-              , ST_AsGeoJSON(st_transform(geom,4326))::json As geometry 
-              , row_to_json((SELECT l FROM (SELECT name AS loc_id) As l)) As properties 
-              FROM timeseries.location As l) As f"""
-    r = engine.execute(stmt).fetchall()
-    print('result has',str(len(r)),'elements')
-    return r
+    stmt = """ select l.name, tm.datetime,
+                max(case when (pa.description = 'Divermeting: grondwaterstand') then tm.scalarvalue else NULL end) as gwstand,
+                max(case when (pa.description = 'Divermeting: grondwaterstand') then u.unit else NULL end) as gwstand_unit,
+                max(case when (pa.description = 'Divermeting: Temperatuur') then tm.scalarvalue else NULL end) as gwtemp,
+                max(case when (pa.description = 'Divermeting: Temperatuur') then u.unit else NULL end) as gwtemp_unit
+                from timeseries.timeseries ts
+                join timeseries.timeseriesvaluesandflags tm on tm.timeserieskey = ts.timeserieskey
+                join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
+                join timeseries.location l on l.locationkey = ts.locationkey
+                join timeseries.unit u on u.unitkey = pa.unitkey
+                where l.name= %(l)s
+                and pa.description in ('Divermeting: grondwaterstand','Divermeting: Temperatuur')
+                group by l.name, tm.datetime"""
+    print(stmt) 
+    with engine.connect().execution_options(autocommit=True) as conn:
+        r = conn.execute(stmt, l=loc_id).fetchall()
+
+    print(r)
+    #selecting datetime / grondwaterstand / temperatuur
+
+    #out = 
+    return r #return a json object in correct format

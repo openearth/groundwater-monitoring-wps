@@ -35,7 +35,8 @@ import configparser
 def read_config():
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
-        devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        #devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'configuration_local.txt')
     else:
         confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'configuration.txt')

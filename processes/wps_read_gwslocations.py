@@ -25,6 +25,7 @@
 # Sign up to recieve regular updates of this function, and to contribute
 # your own tools.
 
+import json
 from pywps import Format
 from pywps.app import Process
 from pywps.inout.outputs import ComplexOutput
