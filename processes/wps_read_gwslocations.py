@@ -35,7 +35,8 @@ from .read_gwslocations import getlocationsfromtable
 # http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
 # http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=wps_read_gwslocations
 # http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_read_gwslocations
-
+# https://grondwater-ijmuiden.avi.directory.intra/wps?service=wps&request=GetCapabilities&version=2.0.0
+# https://grondwater-ijmuiden.avi.directory.intra/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_read_gwslocations
 class ReadGWSlocations(Process):
     def __init__(self):
         inputs = []

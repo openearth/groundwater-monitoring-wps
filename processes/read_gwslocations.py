@@ -63,7 +63,7 @@ def getlocationsfromtable():
     stmt = """SELECT row_to_json(f) As feature 
               FROM (SELECT 'Feature' As type 
               , ST_AsGeoJSON(st_transform(geom,4326))::json As geometry 
-              , row_to_json((SELECT l FROM (SELECT name AS loc_id) As l)) As properties 
+              , row_to_json((SELECT l FROM (SELECT name AS loc_id,13.5 as meanhead) As l)) As properties 
               FROM timeseries.location As l) As f"""
     r = engine.execute(stmt).fetchall()
     print('result has',str(len(r)),'elements')
