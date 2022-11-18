@@ -44,8 +44,7 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
-    #TEST ioanna don't commit
-    confpath = r'D:\viewers\groundwater-monitoring-wps\configuration.txt'
+
     cf = configparser.ConfigParser() 
     print(confpath)
     cf.read(confpath)
