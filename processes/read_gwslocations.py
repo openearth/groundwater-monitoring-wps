@@ -29,6 +29,7 @@
 # system pacakages
 import os
 from sqlalchemy import create_engine
+import json
 import configparser
 
 # Read default configuration from file
@@ -43,6 +44,8 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
+    #TEST ioanna don't commit
+    confpath = r'D:\viewers\groundwater-monitoring-wps\configuration.txt'
     cf = configparser.ConfigParser() 
     print(confpath)
     cf.read(confpath)
@@ -63,8 +66,9 @@ def getlocationsfromtable():
     stmt = """SELECT row_to_json(f) As feature 
               FROM (SELECT 'Feature' As type 
               , ST_AsGeoJSON(st_transform(geom,4326))::json As geometry 
-              , row_to_json((SELECT l FROM (SELECT name AS loc_id,mean_head as meanhead) As l)) As properties 
+              , row_to_json((SELECT l FROM (SELECT name AS loc_id) As l)) As properties 
               FROM timeseries.location As l) As f"""
-    r = engine.execute(stmt).fetchall()
-    print('result has',str(len(r)),'elements')
-    return r
+    res = engine.execute(stmt).fetchall()
+ 
+    res_json = json.dumps([dict(r) for r in res])
+    return res_json
