@@ -48,7 +48,8 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
-    
+    #TEST ioanna don't commit
+    confpath = r'D:\viewers\groundwater-monitoring-wps\configuration.txt'
     cf = configparser.ConfigParser() 
     print(confpath)
     cf.read(confpath)
@@ -70,4 +71,4 @@ def getlocationsfromtable():
     query = select(func.timeseries.gwslocations())
     result = engine.execute(query).fetchone()[0]
 
-    return result
+    return json.dumps(result)
