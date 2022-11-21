@@ -28,8 +28,13 @@
 
 # system pacakages
 import os
+import sqlalchemy
 from sqlalchemy import create_engine
+import json
 import configparser
+from sqlalchemy import column, func, select
+
+
 
 # Read default configuration from file
 def read_config():
@@ -43,6 +48,7 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
+
     cf = configparser.ConfigParser() 
     print(confpath)
     cf.read(confpath)
@@ -55,16 +61,13 @@ def createconnectiontodb():
     host = cf.get('PostGIS','host')
     db   = cf.get('PostGIS','db')
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
+   
     return engine
 
 def getlocationsfromtable():
     # first create connection
     engine = createconnectiontodb()
-    stmt = """SELECT row_to_json(f) As feature 
-              FROM (SELECT 'Feature' As type 
-              , ST_AsGeoJSON(st_transform(geom,4326))::json As geometry 
-              , row_to_json((SELECT l FROM (SELECT name AS loc_id,mean_head as meanhead) As l)) As properties 
-              FROM timeseries.location As l) As f"""
-    r = engine.execute(stmt).fetchall()
-    print('result has',str(len(r)),'elements')
-    return r
+    query = select(func.timeseries.gwslocations())
+    result = engine.execute(query).fetchone()[0]
+
+    return json.dumps(result)
