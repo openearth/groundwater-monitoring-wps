@@ -9,7 +9,8 @@ SELECT json_build_object(
             'properties', json_build_object(
                 -- list of fields
                 'loc_id', locationid,
-                'filters', listfilters
+                'filters', listfilters,
+                'gemiddelde stijghoogte',mean_head
             )
         )
     )
