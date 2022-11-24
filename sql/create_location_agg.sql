@@ -1,4 +1,22 @@
 SELECT json_build_object(
+    'type', 'FeatureCollection', 
+    'features', json_agg(
+        json_build_object(
+            'type',       'Feature',
+            'geometry',   ST_AsGeoJSON(st_transform(geom,4326))::json,
+            'properties', json_build_object(
+                -- list of fields
+                'loc_id', locationid,
+                'filters', listfilters,
+                'gemiddelde stijghoogte',mean_head
+            )
+        )
+    )
+)
+FROM timeseries.location_agg
+
+
+SELECT json_build_object(
 	
     'type', 'FeatureCollection', 
     'features', json_agg(
@@ -21,7 +39,7 @@ select min(geom) as geom, left(l.name,length(l.name)-2) as locationid, '' as lis
 join timeseries.timeseries ts on  ts.locationkey = l.locationkey
 join timeseries.parameter p on p.parameterkey = ts.parameterkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = ts.timeserieskey
-where right(l.name,1)::integer = 1 and ts.timestepkey = 3
+where right(l.name,1)::integer = 1 and ts.timestepkey = 3 and p.parameterkey = 1
 group by locationid;
 
 update timeseries.location_agg set listfilters = '1,2' where locationid in ('A','B','E','BL-01','BL-02', 'BL-03', 'BL-04', 'RWS-B26','RWS-B27');
@@ -34,13 +52,13 @@ insert into timeseries.location_agg (geom,locationid,listfilters,mean_head)
 join timeseries.timeseries ts on  ts.locationkey = l.locationkey
 join timeseries.parameter p on p.parameterkey = ts.parameterkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = ts.timeserieskey
-where  ts.timestepkey = 3 and l.name = 'BK-8.25_2' group by l.geom,l.name);
+where  ts.timestepkey = 3 and p.parameterkey = 1 and l.name = 'BK-8.25_2' group by l.geom,l.name);
 insert into timeseries.location_agg (geom,locationid,listfilters,mean_head) 
 (select geom, left(l.name,length(l.name)-2), '2', avg(scalarvalue) FROM timeseries.location l
 join timeseries.timeseries ts on  ts.locationkey = l.locationkey
 join timeseries.parameter p on p.parameterkey = ts.parameterkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = ts.timeserieskey
-where  ts.timestepkey = 3 and l.name = 'Z13PB600-03_2' group by l.geom,l.name);
+where  ts.timestepkey = 3 and p.parameterkey = 1 and l.name = 'Z13PB600-03_2' group by l.geom,l.name);
 
 
 update timeseries.location_agg set 

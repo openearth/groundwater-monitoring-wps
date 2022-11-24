@@ -10,7 +10,7 @@ SELECT json_build_object(
                 -- list of fields
                 'loc_id', locationid,
                 'filters', listfilters,
-                'gemiddelde stijghoogte',mean_head
+                'mean_head',mean_head
             )
         )
     )
