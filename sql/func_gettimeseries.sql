@@ -1,5 +1,7 @@
--- create or replace function timeseries.gwsfiltertimeseries (loc_id,parameter) returns setof json as 
--- $$
+CREATE OR REPLACE FUNCTION timeseries.gwsfiltertimeseries(loc_id text, parameter text)
+ RETURNS SETOF json
+ LANGUAGE sql
+AS $function$
 SELECT json_build_object(
     'locationproperties',json_build_object(
 		'locationid',l.name,
@@ -26,5 +28,9 @@ join timeseries.timeseries sk on sk.locationkey=l.locationkey
 join timeseries.parameter p on p.parameterkey = sk.parameterkey
 join timeseries.unit u on u.unitkey = p.unitkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = sk.timeserieskey
-where l.name = 'A_2' and p.description = 'Divermeting: grondwaterstand'
+where l.name = loc_id and p.description = parameter
 group by l.name, p.name,u.unit,x,y,tubetop,tubebot,cablelength,epsgcode
+$function$
+;
+
+--select timeseries.gwsfiltertimeseries('A_2','Divermeting: grondwaterstand');

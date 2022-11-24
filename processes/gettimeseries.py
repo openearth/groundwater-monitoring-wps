@@ -31,6 +31,7 @@ import json
 import os
 from sqlalchemy import create_engine
 import configparser
+from sqlalchemy import func, select
 
 # Read default configuration from file
 def read_config():
@@ -44,8 +45,9 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
+    
     cf = configparser.ConfigParser() 
-    print(confpath)
+
     cf.read(confpath)
     return cf
 
@@ -58,30 +60,14 @@ def createconnectiontodb():
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
     return engine
 
-def gettsfromtable(loc_id):
+def gettsfromtable(locid, parameter):
     # haal voor deze loc_id de tijdreeksdata op.
     # first create connection
-    print(loc_id)
+    
     engine = createconnectiontodb()
-    stmt = """ select l.name, tm.datetime,
-                max(case when (pa.description = 'Divermeting: grondwaterstand') then tm.scalarvalue else NULL end) as gwstand,
-                max(case when (pa.description = 'Divermeting: grondwaterstand') then u.unit else NULL end) as gwstand_unit,
-                max(case when (pa.description = 'Divermeting: Temperatuur') then tm.scalarvalue else NULL end) as gwtemp,
-                max(case when (pa.description = 'Divermeting: Temperatuur') then u.unit else NULL end) as gwtemp_unit
-                from timeseries.timeseries ts
-                join timeseries.timeseriesvaluesandflags tm on tm.timeserieskey = ts.timeserieskey
-                join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
-                join timeseries.location l on l.locationkey = ts.locationkey
-                join timeseries.unit u on u.unitkey = pa.unitkey
-                where l.name= %(l)s
-                and pa.description in ('Divermeting: grondwaterstand','Divermeting: Temperatuur')
-                group by l.name, tm.datetime"""
-    print(stmt) 
-    with engine.connect().execution_options(autocommit=True) as conn:
-        r = conn.execute(stmt, l=loc_id).fetchall()
-
-    print(r)
+    
+    query = select(func.timeseries.gwsfiltertimeseries(locid, parameter))
+    result = engine.execute(query).fetchone()[0]
+    
     #selecting datetime / grondwaterstand / temperatuur
-
-    #out = 
-    return r #return a json object in correct format
+    return json.dumps(result) 

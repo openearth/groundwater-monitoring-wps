@@ -37,7 +37,7 @@ from .gettimeseries import gettsfromtable
 # http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=wps_gettimeseries
 # http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2"}
 # https://grondwater-ijmuiden.openearth.nl/wps?service=wps&request=GetCapabilities&version=2.0.0
-# https://grondwater-ijmuiden.openearth.nl/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2"}
+# https://grondwater-ijmuiden.openearth.nl/wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_gettimeseries&datainputs=locationinfo={"locid":"A_2", "parameter":"'Divermeting: grondwaterstand'"}
 #
 
 class GetTimeseries(Process):
@@ -70,9 +70,10 @@ class GetTimeseries(Process):
 
     def _handler(self, request, response):
         try:
-            locid = request.inputs["locationinfo"][0].data
-            thid = json.loads(locid)['locid']
-            res = gettsfromtable(thid)
+            locationinfo_str = request.inputs["locationinfo"][0].data
+            locationinfo_json = json.loads(locationinfo_str)
+            
+            res = gettsfromtable(locationinfo_json["locid"], locationinfo_json["parameter"])
             # dit is de plek om een python script te gaan gebruiken die de tijdreeks voor je gaat ophalen.
             response.outputs["jsonstimeseries"].data = res
         except Exception as e:

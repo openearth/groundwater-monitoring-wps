@@ -38,6 +38,7 @@ from sqlalchemy import column, func, select
 
 # Read default configuration from file
 def read_config():
+    
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
         #devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
@@ -50,7 +51,7 @@ def read_config():
 	# Parse and load
 
     cf = configparser.ConfigParser() 
-    print(confpath)
+    
     cf.read(confpath)
     return cf
 
