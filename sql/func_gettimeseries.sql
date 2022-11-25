@@ -9,6 +9,11 @@ SELECT json_build_object(
 		'top_filter',l.tubetop,
 		'bot_filter',l.tubebot,
 		'cable_length',l.cablelength),
+    'locationstats',json_build_object(
+		'mingw',0.5,
+		'maxgw',0.8,
+		'meangw',0.75,
+		'nobs',19000),        
 	'parameterproperties',json_build_object(
 		'parameter',p.name,
 		'unit',u.unit),
