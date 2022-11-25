@@ -9,11 +9,6 @@ SELECT json_build_object(
 		'top_filter',l.tubetop,
 		'bot_filter',l.tubebot,
 		'cable_length',l.cablelength),
-	'locationstats',json_build_object(
-		'mingw',0.5,
-		'maxgw',0.8,
-		'meangw',0.75,
-		'nobs',19000),
 	'parameterproperties',json_build_object(
 		'parameter',p.name,
 		'unit',u.unit),
@@ -22,7 +17,7 @@ SELECT json_build_object(
                 -- list of fields
                 'datetime', tsv.datetime,
                 'head',tsv.scalarvalue,
-			    'correctedhead',tsv.scalarvalue*0.93
+			    'correctedhead',tsv.scalarvalue*13.25/0.0053
             )
          )
 ) 
