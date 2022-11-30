@@ -22,7 +22,8 @@ SELECT json_build_object(
                 -- list of fields
                 'datetime', tsv.datetime,
                 'head',tsv.scalarvalue,
-			    'correctedhead',tsv.scalarvalue*la.corr_factor
+			    'correctedhead',(((1000+(0.00038033*l.corr_factor)-0.53705182)/1000)*tsv.scalarvalue
+			                    -((((1000+(0.00038033*l.corr_factor)-0.53705182)-1000)/1000)*(tubetop-(altitude_msl-tubetop))))
             )
          )
 ) 
