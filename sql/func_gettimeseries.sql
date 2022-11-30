@@ -10,9 +10,9 @@ SELECT json_build_object(
 		'bot_filter',l.tubebot,
 		'cable_length',l.cablelength),
     'locationstats',json_build_object(
-		'mingw',l.min_gw,
-		'maxgw',l.max_gw,
-		'meangw',l.mean_head,
+		'mingw',to_char(l.min_gw,'0D99'),
+		'maxgw',to_char(l.max_gw,'0D99'),
+		'meangw',to_char(l.mean_head,'0D99'),
 		'nobs',l.nobs),        
 	'parameterproperties',json_build_object(
 		'parameter',p.name,
@@ -36,4 +36,3 @@ where l.name = loc_id and p.description = parameter
 group by l.name, p.name,u.unit,x,y,tubetop,tubebot,cablelength,epsgcode,l.mean_head, l.min_gw,l.max_gw,l.nobs
 $$ 
 language sql
-
