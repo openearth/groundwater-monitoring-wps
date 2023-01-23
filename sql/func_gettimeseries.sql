@@ -1,5 +1,5 @@
--- create or replace function timeseries.gwsfiltertimeseries (loc_id text,parameter text) returns setof json 
--- as $$
+create or replace function timeseries.gwsfiltertimeseries (loc_id text,parameter text) returns setof json 
+as $$
 SELECT json_build_object(
     'locationproperties',json_build_object(
 		'locationid',l.name,
@@ -33,7 +33,7 @@ join timeseries.timeseries sk on sk.locationkey=l.locationkey
 join timeseries.parameter p on p.parameterkey = sk.parameterkey
 join timeseries.unit u on u.unitkey = p.unitkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = sk.timeserieskey
-where l.name = 'A_1' and p.description = 'Divermeting: grondwaterstand'
+where l.name = loc_id and p.description = 'Divermeting: grondwaterstand'
 group by l.name, p.name,u.unit,x,y,tubetop,tubebot,cablelength,epsgcode,l.mean_head, l.min_gw,l.max_gw,l.nobs
--- $$ 
--- language sql
+$$ 
+language sql
