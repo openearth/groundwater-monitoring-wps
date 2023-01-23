@@ -63,7 +63,7 @@ def createconnectiontodb():
 def gettsfromtable(locid, parameter):
     # haal voor deze loc_id de tijdreeksdata op.
     # first create connection
-    
+    print(locid,parameter)
     engine = createconnectiontodb()
     
     query = select(func.timeseries.gwsfiltertimeseries(locid, parameter))
