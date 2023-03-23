@@ -16,7 +16,7 @@ join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
 join timeseries.unit u on pa.unitkey = u.unitkey
 join timeseries.location l on ts.locationkey= l.locationkey
 join timeseries.timeseriesvaluesandflags tm on ts.timeserieskey = tm.timeserieskey
-where pa.parameterkey=9 
+where pa.parameterkey=1 
 group by locid)
 update timeseries.location l
 set min_gw=e.min_gws
@@ -29,7 +29,7 @@ join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
 join timeseries.unit u on pa.unitkey = u.unitkey
 join timeseries.location l on ts.locationkey= l.locationkey
 join timeseries.timeseriesvaluesandflags tm on ts.timeserieskey = tm.timeserieskey
-where pa.parameterkey=9 
+where pa.parameterkey=1 
 group by locid)
 update timeseries.location l
 set max_gw=e.max_gws
@@ -55,7 +55,7 @@ join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
 join timeseries.unit u on pa.unitkey = u.unitkey
 join timeseries.location l on ts.locationkey= l.locationkey
 join timeseries.timeseriesvaluesandflags tm on ts.timeserieskey = tm.timeserieskey
-where pa.parameterkey=9 
+where pa.parameterkey=1 
 group by locid)
 update timeseries.location l
 set mean_head=e.mean_head
