@@ -44,6 +44,8 @@ import logging
 from processes.ultimate_question import UltimateQuestion
 from processes.wps_read_gwslocations import ReadGWSlocations
 from processes.wps_gettimeseries import GetTimeseries
+from processes.nobv_wps_read_locations import NOBVReadlocations
+from processes.nobv_wps_gettimeseries import NOBVGetTimeseries
 
 # Groundwater modeling processes
 
@@ -53,6 +55,8 @@ processes = [
     UltimateQuestion(),
     ReadGWSlocations(),
     GetTimeseries(),
+    NOBVReadlocations(),
+    NOBVGetTimeseries(),
 ]
 
 # Description used in template

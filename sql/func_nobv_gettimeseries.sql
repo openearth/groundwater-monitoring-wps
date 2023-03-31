@@ -10,10 +10,10 @@ SELECT json_build_object(
 		'bot_filter',l.tubebot,
 		'cable_length',l.cablelength),
     'locationstats',json_build_object(
-		'mingw',to_char(l.min_gw,'0D99'),
-		'maxgw',to_char(l.max_gw,'0D99'),
-		'meangw',to_char(l.mean_head,'0D99'),
-		'nobs',l.nobs),        
+		'mingw','0.12',
+		'maxgw','0.12',
+		'meangw','0.12',
+		'nobs',1),        
 	'parameterproperties',json_build_object(
 		'parameter',p.name,
 		'unit',u.unit),
@@ -28,12 +28,11 @@ SELECT json_build_object(
          )
 ) 
 FROM timeseries.location l
-join timeseries.location_agg la on la.locationid = left(l.name,length(l.name)-2)
 join timeseries.timeseries sk on sk.locationkey=l.locationkey
 join timeseries.parameter p on p.parameterkey = sk.parameterkey
 join timeseries.unit u on u.unitkey = p.unitkey
 join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey = sk.timeserieskey
 where l.name = loc_id and p.description = parameter
-group by l.name, p.name,u.unit,x,y,tubetop,tubebot,cablelength,epsgcode,l.mean_head, l.min_gw,l.max_gw,l.nobs
+group by l.name, p.name,u.unit,x,y,tubetop,tubebot,cablelength,epsgcode --,l.mean_head, l.min_gw,l.max_gw,l.nobs
 $$ 
 language sql

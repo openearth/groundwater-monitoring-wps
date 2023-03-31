@@ -5,6 +5,7 @@ tmp/*
 data/*
 static/*
 configuration*.txt
+*configuration*.txt
 
 # vim, mac os
 *.sw*
