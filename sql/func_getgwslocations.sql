@@ -6,6 +6,7 @@ SELECT json_build_object(
         json_build_object(
             'type',       'Feature',
             'geometry',   ST_AsGeoJSON(st_transform(geom,4326))::json,
+            'geometry_rd', ST_AsGeoJSON(geom)::json,
             'properties', json_build_object(
                 -- list of fields
                 'loc_id', locationid,
