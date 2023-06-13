@@ -8,12 +8,16 @@ SELECT json_build_object(
 		'crs','EPSG'||(epsgcode)::text,
 		'top_filter',l.tubetop,
 		'bot_filter',l.tubebot,
-		'cable_length',l.cablelength),
+		'cable_length',l.cablelength
+		),
     'locationstats',json_build_object(
 		'mingw',to_char(l.min_gw,'0D99'),
 		'maxgw',to_char(l.max_gw,'0D99'),
 		'meangw',to_char(l.mean_head,'0D99'),
-		'nobs',l.nobs),        
+		'nobs',l.nobs,
+		'recent_gws',to_char(max(tsv.scalarvalue),'0D99'),
+		'recent_date',max(tsv.datetime)
+		),        
 	'parameterproperties',json_build_object(
 		'parameter',p.name,
 		'unit',u.unit),

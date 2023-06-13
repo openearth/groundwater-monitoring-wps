@@ -10,16 +10,22 @@ SELECT json_build_object(
                 -- list of fields
                 'loc_id', name,
                 'filters', '1',
-                'mean_head',0.1
+                'mean_head',to_char(mean_head,'S999.99')
             )
         )
     )
 )
-FROM timeseries.location 
-WHERE name in (select l.name from timeseries.location l
-join timeseries.timeseries ts on ts.locationkey = l.locationkey
-where l.geom is not Null
-group by l.name)
+from timeseries.location_agg
+where geom is not Null
+
 $$ language sql
 
 
+drop table if exists timeseries.location_agg
+create table timeseries.location_agg as
+select l.name, avg(tsv.scalarvalue) as mean_head, left(l.name, 3) as shortname, l.geom from timeseries.location l
+join timeseries.timeseries t on t.locationkey=l.locationkey
+join timeseries.timeseriesvaluesandflags tsv on tsv.timeserieskey=t.timeserieskey
+join timeseries.parameter p on p.parameterkey = t.parameterkey
+where p.name='Grondwaterstand'
+group by l.name, l.geom
