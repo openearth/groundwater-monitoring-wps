@@ -1,3 +1,10 @@
+ALTER TABLE timeseries.location
+ADD COLUMN corr_factor double precision,
+ADD COLUMN min_gw double precision,
+add column max_gw double precision,
+add column nobs double precision,
+add column mean_head double precision;
+
 --ec, taken from last september
 with e as (select tm.scalarvalue as ec,l.name as locid from timeseries.timeseries ts
 join timeseries.parameter pa ON pa.parameterkey = ts.parameterkey
