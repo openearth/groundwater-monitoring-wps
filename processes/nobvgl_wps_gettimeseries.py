@@ -35,7 +35,7 @@ from .nobvgl_gettimeseries import gettsfromtable
 
 # http://localhost:5000/wps?service=wps&request=GetCapabilities&version=2.0.0
 # http://localhost:5000/wps?service=wps&request=DescribeProcess&version=2.0.0&Identifier=nobvgl_wps_gettimeseries
-# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=nobvgl_wps_gettimeseries&datainputs=locationinfo={"locid":"Cabauw", "parameter":"Meting met extensometers van zetting op verschillende dieptes","projectnr":11206020}
+# http://localhost:5000/wps?service=wps&request=Execute&version=2.0.0&Identifier=nobvgl_wps_gettimeseries&datainputs=locationinfo={"locid":"1", "parameter":"Meting met extensometers van zetting op verschillende dieptes","projectnr":11206020}
 # https://grondwater-ijmuiden.openearth.nl/wps?service=wps&request=GetCapabilities&version=2.0.0
 # https://grondwater-ijmuiden.openearth.nl/wps?service=wps&request=Execute&version=2.0.0&Identifier=nobvgl_wps_gettimeseries&datainputs=locationinfo={"locid":"ALB_MS_1", "parameter":"Grondwaterstand"}
 
