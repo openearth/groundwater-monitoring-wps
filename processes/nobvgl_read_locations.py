@@ -31,7 +31,7 @@ import os
 import json
 import configparser
 import cx_Oracle
-#cx_Oracle.init_oracle_client(lib_dir= r"D:\software\oracle\instantclient_21_9")
+
 
 # Read default configuration from file
 def read_config():
@@ -42,7 +42,7 @@ def read_config():
         devpath = r'c:\develop\groundwater-monitoring-wps\processes'
         #devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'nobvgl_configuration.txt')
-        
+        print(confpath)
     else:
         confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobv_configuration.txt')
     if not os.path.exists(confpath):	
@@ -71,3 +71,11 @@ def getlocationsfromtable(prjnr):
     result = c.callfunc('getLocations', str, [prjnr, 1])
     #return json.dumps(result)
     return result
+
+def test():
+    if os.name == 'nt':
+        cx_Oracle.init_oracle_client(lib_dir= r"c:\software\oracle\instantclient_21_10")
+    else:
+        cx_Oracle.init_oracle_client(lib_dir= r"/usr/lib/oracle/21/client64/lib")
+    prjnr = 11206020
+    print(getlocationsfromtable(prjnr))

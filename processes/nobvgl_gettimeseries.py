@@ -68,10 +68,15 @@ def gettsfromtable(locid, parameter,projectnr):
     # haal voor deze loc_id de tijdreeksdata op.
     # first create connection
     print(locid,parameter)
+    print('-------------')
+    print('work in progress here, apparantly the getts is empty, not sure if the correct things are called.')
+    print('-------------')
     connection = createconnectiontodb()
     c = connection.cursor()
     #projectnr = 11206020
-    getts = c.callfunc('getTimeseries',cx_Oracle.DB_TYPE_CLOB,[projectnr,1,1])
+    # getts = c.callfunc('getTimeseries',cx_Oracle.DB_TYPE_CLOB,[projectnr,1,1])
+    getts = c.callfunc('getTimeseries',str,[projectnr,1,locid])
+    print('wtf is getts:',getts)
     result = cx_Oracle.LOB.read(getts)
     return result
     #selecting datetime / grondwaterstand / temperatuur
