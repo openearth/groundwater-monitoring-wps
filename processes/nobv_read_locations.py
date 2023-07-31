@@ -42,7 +42,7 @@ def read_config():
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
         print('reading local configuration')
-        devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        devpath = r'c:\develop\groundwater-monitoring-wps\processes'
         #devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'nobv_configuration.txt')
         

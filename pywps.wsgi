@@ -42,8 +42,8 @@ import logging
 
 # initialize Oracle client library
 import cx_Oracle
-if os.name == 'nt' then
-    cx_Oracle.init_oracle_client(lib_dir= r"D:\software\oracle\instantclient_21_9")
+if os.name == 'nt':
+    cx_Oracle.init_oracle_client(lib_dir= r"C:\software\oracle\instantclient_21_10")
 else:
     cx_Oracle.init_oracle_client(lib_dir= r"/usr/lib/oracle/21/client64/lib") 
 

@@ -37,7 +37,7 @@ from sqlalchemy import func, select
 def read_config():
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
-        devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
+        devpath = r'c:\develop\groundwater-monitoring-wps\processes'
         #devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'nobv_configuration.txt')
     else:
