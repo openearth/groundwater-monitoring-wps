@@ -42,15 +42,16 @@ def read_config():
         devpath = r'c:\develop\groundwater-monitoring-wps\processes'
         #devpath=r'C:\projecten\grondwater_monitoring'
         confpath = os.path.join(devpath,'nobvgl_configuration.txt')
-        print(confpath)
+        print('windows path',confpath)
     else:
-        confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobv_configuration.txt')
+        confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobvgl_configuration.txt')
+        print('linux path', confpath)
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/nobvgl_configuration.txt'
-	# Parse and load
-
+        print('path not found, set to',confpath)
+	
+    # Parse and load
     cf = configparser.ConfigParser() 
-    
     cf.read(confpath)
     return cf
 
