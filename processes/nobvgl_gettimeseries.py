@@ -74,8 +74,17 @@ def gettsfromtable(locid, parameter,projectnr):
     connection = createconnectiontodb()
     c = connection.cursor()
     #projectnr = 11206020
-    # getts = c.callfunc('getTimeseries',cx_Oracle.DB_TYPE_CLOB,[projectnr,1,1])
-    getts = c.callfunc('getTimeseries',str,[projectnr,1,locid])
+    #getts = c.callfunc('getTimeseries',cx_Oracle.DB_TYPE_CLOB,[projectnr,1,locid])
+
+    # from august 2023 the parameters should be:
+    projectnr = 11206020
+    measid    = 3
+    param     = 'regenval'
+    datefrom  = '2023-01-01'
+    dateto    = '2023-01-31'
+    getts = c.callfunc('getTimeseries',cx_Oracle.DB_TYPE_CLOB,[projectnr,measid,param,datefrom,dateto])
+
+    #getts = c.callfunc('getTimeseries',str,[projectnr,1,locid])
     print('wtf is getts:',getts)
     result = cx_Oracle.LOB.read(getts)
     return result

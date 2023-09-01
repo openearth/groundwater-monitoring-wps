@@ -72,7 +72,7 @@ class NOBVGLReadlocations(Process):
             locationinfo_str = request.inputs["projectinfo"][0].data
             locationinfo_json = json.loads(locationinfo_str)
             
-            response.outputs["jsonstations"].data = getlocationsfromtable(locationinfo_json["projectnr"])
+            response.outputs["jsonstations"].data = getlocationsfromtable(prjnr=locationinfo_json["projectnr"])
         except Exception as e:
             res = { 'errMsg' : 'ERROR: {}'.format(e)}
             response.outputs['output_json'].data = json.dumps(res)	

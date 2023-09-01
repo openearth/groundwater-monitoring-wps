@@ -24,3 +24,5 @@ _build/
 
 logs/pywps.log
 gw_mon.yml
+pywps.wsgi
+logs/pywps.log
