@@ -34,8 +34,6 @@ import json
 import configparser
 from sqlalchemy import column, func, select
 
-
-
 # Read default configuration from file
 def read_config():
     
@@ -70,7 +68,8 @@ def createconnectiontodb():
 def getlocationsfromtable():
     # first create connection
     engine = createconnectiontodb()
+    con = engine.connect()
     query = select(func.timeseries.gwslocations())
-    result = engine.execute(query).fetchone()[0]
+    result = con.execute(query).fetchone()[0]
 
     return json.dumps(result)
