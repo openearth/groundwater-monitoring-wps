@@ -111,7 +111,8 @@ def getlocationsfromtableGL(prjnr):
         prjnr (integer): Geolab has stored all data by projectnr. 
 
     Returns:
-        json: json object with combination of location and parameter measured (incl. a list per parameter for all instruments!)
+        json: json object with combination of location and parameter 
+        measured (incl. a list per parameter for all instruments!)
     """
     connection = createconnectiontodb()
     c = connection.cursor()
