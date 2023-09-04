@@ -233,7 +233,7 @@ def test():
     prjnr = 11206020
     md = list()
     md = getlocationsfromtable(True,True,prjnr)
+    return md
 
-    print('we komen toch niet in test')
 
 
