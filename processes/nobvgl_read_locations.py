@@ -30,8 +30,11 @@
 import os
 import json
 import configparser
+import logging
 import cx_Oracle
 from sqlalchemy import create_engine, func, select
+
+logger = logging.getLogger("PYWPS")
 
 # Read default configuration from file
 def read_config(db):
@@ -47,20 +50,19 @@ def read_config(db):
     if db == 'oracle':
         # Default config file (relative path, does not work on production, weird)
         if os.name == 'nt':
-            print('reading local configuration')
             devpath = r'c:\develop\groundwater-monitoring-wps\processes'
             #devpath=r'C:\projecten\grondwater_monitoring'
             confpath = os.path.join(devpath,'nobvgl_configuration.txt')
-            print('windows path',confpath)
+            logger.info('windows path',confpath)
         else:
             confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobvgl_configuration.txt')
-            print('linux path', confpath)
+            logger.info('linux path', confpath)
         if not os.path.exists(confpath):	
             confpath = '/opt/pywps/processes/nobvgl_configuration.txt'
-            print('path not found, set to',confpath)
+            logger.info('path not found, set to',confpath)
     elif db == 'pg':
         if os.name == 'nt':
-            print('reading local configuration')
+            logger.info('reading local configuration')
             devpath = r'c:\develop\groundwater-monitoring-wps\processes'
             #devpath=r'C:\projecten\grondwater_monitoring'
             confpath = os.path.join(devpath,'nobv_configuration.txt')
@@ -118,6 +120,7 @@ def getlocationsfromtableGL(prjnr):
     c = connection.cursor()
     #for now there is only 1 projectnr possible. In future it should be investigated if several projectnrs are desired
     result = c.callfunc('getLocations', str, [prjnr])
+    logger.info('retrieved result from Oracle db for prjnr',prjnr)
     return result
 
 def getlocationsfromtablePG():
@@ -131,6 +134,7 @@ def getlocationsfromtablePG():
     con = engine.connect()
     query = select(func.timeseries.gwslocations())
     result = con.execute(query).fetchone()[0]
+    logger.info('retrieved result from PG',len(result))
     return result
 
 # the adjustment is here that the getlocationsfromtable can get
