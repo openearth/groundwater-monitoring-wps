@@ -46,6 +46,7 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
+    confpath = '/opt/pywps/processes/configuration.txt'
     cf = configparser.ConfigParser() 
     cf.read(confpath)
     return cf
