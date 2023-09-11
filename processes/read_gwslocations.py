@@ -52,7 +52,6 @@ def read_config():
 
 def createconnectiontodb():
     cf = read_config()
-    print('de cf secties:',cf.sections())
     user = cf.get('PostGIS','user')
     pwd  = cf.get('PostGIS','pass')
     host = cf.get('PostGIS','host')

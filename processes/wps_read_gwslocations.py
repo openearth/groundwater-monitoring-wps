@@ -65,7 +65,6 @@ class ReadGWSlocations(Process):
 
     def _handler(self, request, response):
         try:
-            print('voor getlocations')
             response.outputs["jsonstations"].data = getlocationsfromtable()
         except Exception as e:
             res = { 'errMsg' : 'ERROR: {}'.format(e)}
