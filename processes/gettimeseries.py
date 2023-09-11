@@ -67,7 +67,8 @@ def gettsfromtable(locid, parameter):
     engine = createconnectiontodb()
     
     query = select(func.timeseries.gwsfiltertimeseries(locid, parameter))
-    result = engine.execute(query).fetchone()[0]
+    con = engine.connect()
+    result = con.execute(query).fetchone()[0]
     
     #selecting datetime / grondwaterstand / temperatuur
     return json.dumps(result) 
