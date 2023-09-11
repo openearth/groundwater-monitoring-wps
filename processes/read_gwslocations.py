@@ -34,6 +34,8 @@ import json
 import configparser
 from sqlalchemy import column, func, select
 
+import logging
+logging.basicConfig(filename='pywps.log', level=logging.INFO)
 
 
 # Read default configuration from file
@@ -49,7 +51,7 @@ def read_config():
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
-
+    logging.info('configuration',confpath)
     cf = configparser.ConfigParser() 
     
     cf.read(confpath)
@@ -61,6 +63,7 @@ def createconnectiontodb():
     pwd  = cf.get('PostGIS','pass')
     host = cf.get('PostGIS','host')
     db   = cf.get('PostGIS','db')
+    logging.info('cf',db)
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
    
     return engine
