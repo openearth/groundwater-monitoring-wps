@@ -37,41 +37,39 @@ from sqlalchemy import column, func, select
 import logging
 logging.basicConfig(filename='pywps.log', level=logging.INFO)
 
-
 # Read default configuration from file
 def read_config():
     
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
         #devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
-        devpath=r'C:\projecten\grondwater_monitoring'
-        confpath = os.path.join(devpath,'configuration_local.txt')
+        devpath=r'C:\develop\groundwater-monitoring-wps\processes'
+        confpath = os.path.join(devpath,'configuration.txt')
     else:
         confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'configuration.txt')
     if not os.path.exists(confpath):	
         confpath = '/opt/pywps/processes/configuration.txt'
 	# Parse and load
-    logging.info('configuration',confpath)
     cf = configparser.ConfigParser() 
-    
     cf.read(confpath)
     return cf
 
 def createconnectiontodb():
     cf = read_config()
+    print('de cf secties:',cf.sections())
     user = cf.get('PostGIS','user')
     pwd  = cf.get('PostGIS','pass')
     host = cf.get('PostGIS','host')
     db   = cf.get('PostGIS','db')
-    logging.info('cf',db)
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
-   
     return engine
 
 def getlocationsfromtable():
     # first create connection
     engine = createconnectiontodb()
+    logging.info('engine created')
     query = select(func.timeseries.gwslocations())
-    result = engine.execute(query).fetchone()[0]
+    con = engine.connect()
+    result = con.execute(query).fetchone()[0]
 
     return json.dumps(result)
