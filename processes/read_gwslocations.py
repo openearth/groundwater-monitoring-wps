@@ -34,12 +34,8 @@ import json
 import configparser
 from sqlalchemy import column, func, select
 
-import logging
-logging.basicConfig(filename='pywps.log', level=logging.INFO)
-
 # Read default configuration from file
 def read_config():
-    
 	# Default config file (relative path, does not work on production, weird)
     if os.name == 'nt':
         #devpath = r'D:\projecten\datamanagement\rws\GrondwaterMonitoringIJmuiden\groundwater_monitoring_wps\groundwater-monitoring-wps\processes'
@@ -67,7 +63,6 @@ def createconnectiontodb():
 def getlocationsfromtable():
     # first create connection
     engine = createconnectiontodb()
-    logging.info('engine created')
     query = select(func.timeseries.gwslocations())
     con = engine.connect()
     result = con.execute(query).fetchone()[0]

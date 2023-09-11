@@ -116,3 +116,15 @@ INFO:PYWPS:Request: execute
 ERROR:PYWPS:Process error: method=wps_read_gwslocations.py._handler, line=72, msg='output_json'
 INFO:PYWPS:Removing temporary working directory: C:\develop\groundwater-monitoring-wps\tmp\pywps_process_gzqc9__x
 INFO:werkzeug:127.0.0.1 - - [11/Sep/2023 09:36:56] "GET /wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_read_gwslocations HTTP/1.1" 200 -
+INFO:PYWPS:loading configuration
+INFO:PYWPS:Configuration file(s) ['pywps.cfg'] loaded
+WARNING:PYWPS:server->workdir configuration value ./tmp is not absolute path, making it absolute to C:\develop\groundwater-monitoring-wps\tmp
+WARNING:PYWPS:server->outputpath configuration value ./data/ is not directory
+WARNING:PYWPS:server->outputpath configuration value ./data/ is not absolute path, making it absolute to C:\develop\groundwater-monitoring-wps\data
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:PYWPS:Request: execute
+INFO:PYWPS:validating JSON; Mode: 0
+INFO:PYWPS:Removing temporary working directory: C:\develop\groundwater-monitoring-wps\tmp\pywps_process_gzqm_0i3
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2023 09:40:30] "GET /wps?service=wps&request=Execute&version=2.0.0&Identifier=wps_read_gwslocations HTTP/1.1" 200 -
