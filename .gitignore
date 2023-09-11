@@ -21,8 +21,8 @@ pywps_demo.egg-info/
 # docs build artifacts
 _build/
 
-
 logs/pywps.log
+test.log
 gw_mon.yml
 pywps.wsgi
 
