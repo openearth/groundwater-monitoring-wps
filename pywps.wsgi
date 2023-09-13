@@ -54,8 +54,8 @@ from processes.wps_read_gwslocations import ReadGWSlocations
 from processes.wps_gettimeseries import GetTimeseries
 from processes.nobv_wps_read_locations import NOBVReadlocations
 from processes.nobv_wps_gettimeseries import NOBVGetTimeseries
-# from processes.nobvgl_wps_read_locations import NOBVGLReadlocations
-# from processes.nobvgl_wps_gettimeseries import NOBVGLGetTimeseries
+from processes.nobvgl_wps_read_locations import NOBVGLReadlocations
+from processes.nobvgl_wps_gettimeseries import NOBVGLGetTimeseries
 
 # Groundwater modeling processes
 
@@ -67,8 +67,8 @@ processes = [
     GetTimeseries(),
     NOBVReadlocations(),
     NOBVGetTimeseries(),
-    # NOBVGLReadlocations(),
-    # NOBVGLGetTimeseries(),
+    NOBVGLReadlocations(),
+    NOBVGLGetTimeseries(),
 ]
 
 # Description used in template
