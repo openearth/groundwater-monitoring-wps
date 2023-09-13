@@ -244,11 +244,6 @@ def convertGeolabJson(result2):
     # return json.dumps(result)
 
 def test():
-    import cx_Oracle
-    if os.name == 'nt':
-        cx_Oracle.init_oracle_client(lib_dir= r"c:\software\oracle\instantclient_21_10")
-    else:
-        cx_Oracle.init_oracle_client(lib_dir= r"/usr/lib/oracle/21/client64/lib")
     prjnr = 11206020
     md = list()
     md = getlocationsfromtable(True,True,prjnr)
