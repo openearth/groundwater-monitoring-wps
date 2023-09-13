@@ -63,7 +63,7 @@ def createconnectiontodb():
 def getlocationsfromtable():
     # first create connection
     engine = createconnectiontodb()
-    query = select(func.nobv.gwslocations())
+    query = select(func.timeseries.gwslocations())
     con = engine.connect()
     result = con.execute(query).fetchone()[0]
 
