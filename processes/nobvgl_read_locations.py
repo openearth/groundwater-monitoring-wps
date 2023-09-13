@@ -31,8 +31,15 @@ import os
 import json
 import configparser
 import logging
-import cx_Oracle
 from sqlalchemy import create_engine, func, select
+
+# load oracle package and libraries
+import cx_Oracle
+if os.name == 'nt':
+    cx_Oracle.init_oracle_client(lib_dir= r"c:\software\oracle\instantclient_21_10")
+else:
+    cx_Oracle.init_oracle_client(lib_dir= r"/usr/lib/oracle/21/client64/lib")
+
 
 logger = logging.getLogger('PYWPS')
 logger.setLevel('INFO')
@@ -56,12 +63,13 @@ def read_config(db):
             confpath = os.path.join(devpath,'nobvgl_configuration.txt')
         else:
             confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobvgl_configuration.txt')
-            logger.info('linux path', confpath)
+            #logger.info('linux path', confpath)
         if not os.path.exists(confpath):	
             confpath = '/opt/pywps/processes/nobvgl_configuration.txt'
+        print('oracle configpath',confpath)
     elif db == 'pg':
         if os.name == 'nt':
-            logger.info('reading local configuration')
+            #logger.info('reading local configuration')
             devpath = r'c:\develop\groundwater-monitoring-wps\processes'
             #devpath=r'C:\projecten\grondwater_monitoring'
             confpath = os.path.join(devpath,'nobv_configuration.txt')
@@ -69,8 +77,10 @@ def read_config(db):
             confpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'nobv_configuration.txt')
         if not os.path.exists(confpath):	
             confpath = '/opt/pywps/processes/nobv_configuration.txt'
+        print('PG configpath',confpath)
     # Parse and load
-    logger.info('path to configuration',confpath)
+    #logger.info('path to configuration',confpath)
+    
     cf = configparser.ConfigParser() 
     cf.read(confpath)
     return cf
@@ -87,7 +97,8 @@ def createconnectiontopgdb():
     host = cf.get('PostGIS','host')
     db   = cf.get('PostGIS','db')
     engine = create_engine("postgresql+psycopg2://{u}:{p}@{h}:5432/{d}".format(u=user,p=pwd,h=host,d=db))  
-    logger.info('engine to PG created')
+    #logger.info('engine to PG created')
+    print('PG connection established')
     return engine
 
 def createconnectiontodb():
@@ -103,7 +114,8 @@ def createconnectiontodb():
     db   = cf.get('cxOracle','db')
     port = cf.get('cxOracle','port')
     connection = cx_Oracle.connect(user,pwd, '{}:{}/{}'.format(host,port,db),encoding='UTF-8')
-    logger.info('connection with Oracle created')
+    print('Oracle connection established')
+    #logger.info('connection with Oracle created')
     return connection
 
 def getlocationsfromtableGL(prjnr):
@@ -120,7 +132,8 @@ def getlocationsfromtableGL(prjnr):
     c = connection.cursor()
     #for now there is only 1 projectnr possible. In future it should be investigated if several projectnrs are desired
     result = c.callfunc('getLocations', str, [prjnr])
-    logger.info('retrieved result from Oracle db for prjnr',str(prjnr))
+    #logger.info('retrieved result from Oracle db for prjnr',str(prjnr))
+    print('Oracle results',str(len(result)))
     return result
 
 def getlocationsfromtablePG():
@@ -134,7 +147,8 @@ def getlocationsfromtablePG():
     con = engine.connect()
     query = select(func.timeseries.gwslocations())
     result = con.execute(query).fetchone()[0]
-    logger.info('retrieved result from PG, no of elements',str(len(result)))
+    print('PG results',str(len(result)))
+    #logger.info('retrieved result from PG, no of elements',str(len(result)))
     return result
 
 # the adjustment is here that the getlocationsfromtable can get
