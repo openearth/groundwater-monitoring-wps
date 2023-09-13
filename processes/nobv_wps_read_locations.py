@@ -30,8 +30,8 @@ from pywps import Format
 from pywps.app import Process
 from pywps.inout.outputs import ComplexOutput
 from pywps.app.Common import Metadata
-from .nobv_read_locations import getlocationsfromtable
-#from .nobvgl_read_locations import test as getlocationsfromtable
+#from .nobv_read_locations import getlocationsfromtable
+from .nobvgl_read_locations import test as getlocationsfromtable
 
 import logging
 logging.basicConfig(filename='pywps.log', level=logging.INFO)
